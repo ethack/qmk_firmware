@@ -22,15 +22,15 @@ extern uint8_t is_master;
 // Layer names don't all need to be of the same length, obviously, and you can also skip them
 // entirely and just use numbers.
 #define _QWERTY 0
-#define _NUMPAD 1
-#define _EDIT 2
-#define _SYMBOL 3
+#define _LOWER 1
+#define _RAISE 2
+#define _ADJUST 3
 
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
-  NUMPAD,
-  EDIT,
-  SYMBOL,
+  LOWER,
+  RAISE,
+  ADJUST,
   BACKLIT,
   RGBRST
 };
@@ -41,62 +41,76 @@ enum macro_keycodes {
 
 #define KC______ KC_TRNS
 #define KC_XXXXX KC_NO
+#define KC_LOWER LOWER
+#define KC_RAISE RAISE
+#define KC_RST   RESET
+#define KC_LRST  RGBRST
+#define KC_LTOG  RGB_TOG
+#define KC_LHUI  RGB_HUI
+#define KC_LHUD  RGB_HUD
+#define KC_LSAI  RGB_SAI
+#define KC_LSAD  RGB_SAD
+#define KC_LVAI  RGB_VAI
+#define KC_LVAD  RGB_VAD
+#define KC_LMOD  RGB_MOD
+#define KC_CTLTB CTL_T(KC_TAB)
+#define KC_GUIEI GUI_T(KC_LANG2)
+#define KC_ALTKN ALT_T(KC_LANG1)
 
 #define KC_HYPESC HYPR_T(KC_ESC)
 // #define KC_CTLGUI LCTL_T(KC_LGUI)
 
-#define KC_BSPC_E LT(_EDIT,   KC_BSPC)
-#define KC_TAB_N  LT(_NUMPAD, KC_TAB)
-#define KC_ENT_S  LT(_SYMBOL, KC_ENT)
-#define KC_SPC_S  LT(_SYMBOL, KC_SPC)
+#define KC_SPCRS LT(_RAISE, KC_SPC)
+#define KC_SPCLW LT(_LOWER, KC_SPC)
+#define KC_ENTRS LT(_RAISE, KC_ENT)
+#define KC_ENTLW LT(_LOWER, KC_ENT)
 
-// Keymap v2
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
-        GRV,     Q,     W,     E,     R,     T,                      Y,     U,     I,     O,     P,  BSPC,\
+        TAB,     Q,     W,     E,     R,     T,                      Y,     U,     I,     O,     P,  BSPC,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
      HYPESC,     A,     S,     D,     F,     G,                      H,     J,     K,     L,  SCLN,  QUOT,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        LSPO,     Z,     X,     C,     V,     B,                      N,     M,  COMM,   DOT,  SLSH,  RSPC,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  LCTL, BSPC_E, TAB_N,    ENT_S, SPC_S,  LALT \
+                                  LCTL,  SPCLW, ENTLW,   ENTRS,  SPCRS,  LALT \
                               //`--------------------'  `--------------------'
   ),
 
-  [_NUMPAD] = LAYOUT_kc( \
+  [_LOWER] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
-      XXXXX,     1,     2,     3,     4,     5,                      6,     7,     8,     9,  ASTR,  BSPC,\
+        TAB,     1,     2,     3,     4,     5,                      6,     7,     8,     9,     0,  BSPC,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-     HYPESC, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                   MINS,     4,     5,     6,  SCLN,   DEL,\
+     HYPESC, MUTE,   VOLD,  VOLU,  PGUP,  PGDN,                   LEFT,  DOWN,    UP, RIGHT,  HOME,   END,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LSPO, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                   PLUS,     1,     2,     3,  SLSH,   EQL,\
+       LSPO,    F1,    F2,    F3,    F4,    F5,                     F6,    F7,    F8,    F9,   F10,  RSPC,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  LCTL, BSPC_E, TAB_N,      ENT,     0,   DOT \
-                              //`--------------------'  `--------------------'
-  ),  // Missing comma (under DOT), dollar sign (under 4), and space from numpad layer.
-
-  [_EDIT] = LAYOUT_kc( \
-  //,-----------------------------------------.                ,-----------------------------------------.
-      XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                   HOME,  PGDN,  PGUP,   END,  VOLU,   DEL,\
-  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-     HYPESC,  MUTE,  VOLD,  VOLU,  PGUP,  PGDN,                   LEFT,  DOWN,    UP, RIGHT,  COPY,   CUT,\
-  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LSPO,  UNDO,   CUT,  COPY, PASTE, XXXXX,                  PASTE,  LEFT,  DOWN, RIGHT,  VOLD,  MUTE,\
-  //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  LCTL, BSPC_E, TAB_N,   ENT_S, SPC_S,  LALT \
+                                  LCTL,  SPCLW, ENTLW,   ENTRS,  SPCRS,  LALT \
                               //`--------------------'  `--------------------'
   ),
 
-  [_SYMBOL] = LAYOUT_kc( \
+  [_RAISE] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
-      XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                   UNDS,  LBRC,  RBRC, XXXXX,  ASTR,  BSPC,\
+        ESC,  EXLM,    AT,  HASH,   DLR,  PERC,                   CIRC,  AMPR,  ASTR,  LPRN,  RPRN,  BSPC,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-     HYPESC,  EXLM,    AT,  HASH,   DLR,  PERC,                   MINS,  LPRN,  RPRN,  PIPE,  SCLN,  QUOT,\
+     HYPESC, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                   MINS,   EQL,  LCBR,  RCBR,  PIPE,   GRV,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      XXXXX, XXXXX, XXXXX,  CIRC,  AMPR, XXXXX,                   PLUS,  LCBR,  RCBR,  BSLS,  SLSH, XXXXX,\
+       LSFT, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                   UNDS,  PLUS,  LBRC,  RBRC,  BSLS,  TILD,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  LCTL, BSPC_E, TAB_N,   ENT_S, SPC_S,  LALT \
+                                  LCTL,  SPCLW, ENTLW,   ENTRS,  SPCRS,  LALT \
+                              //`--------------------'  `--------------------'
+  ),
+
+  [_ADJUST] = LAYOUT_kc( \
+  //,-----------------------------------------.                ,-----------------------------------------.
+        RST,  LRST, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
+  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
+       LTOG,  LHUI,  LSAI,  LVAI, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
+  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
+       LMOD,  LHUD,  LSAD,  LVAD, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
+  //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
+                                  LCTL,  SPCLW, ENTLW,   ENTRS,  SPCRS,  LALT \
                               //`--------------------'  `--------------------'
   )
 };
@@ -108,7 +122,7 @@ void persistent_default_layer_set(uint16_t default_layer) {
   default_layer_set(default_layer);
 }
 
-// Setting SYMBOL layer RGB back to default
+// Setting ADJUST layer RGB back to default
 void update_tri_layer_RGB(uint8_t layer1, uint8_t layer2, uint8_t layer3) {
   if (IS_LAYER_ON(layer1) && IS_LAYER_ON(layer2)) {
     layer_on(layer3);
@@ -190,31 +204,31 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
-    case NUMPAD:
+    case LOWER:
       if (record->event.pressed) {
-        layer_on(_NUMPAD);
-        update_tri_layer_RGB(_NUMPAD, _EDIT, _SYMBOL);
+        layer_on(_LOWER);
+        update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
       } else {
-        layer_off(_NUMPAD);
-        update_tri_layer_RGB(_NUMPAD, _EDIT, _SYMBOL);
+        layer_off(_LOWER);
+        update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
       }
       return false;
       break;
-    case EDIT:
+    case RAISE:
       if (record->event.pressed) {
-        layer_on(_EDIT);
-        update_tri_layer_RGB(_NUMPAD, _EDIT, _SYMBOL);
+        layer_on(_RAISE);
+        update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
       } else {
-        layer_off(_EDIT);
-        update_tri_layer_RGB(_NUMPAD, _EDIT, _SYMBOL);
+        layer_off(_RAISE);
+        update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
       }
       return false;
       break;
-    case SYMBOL:
+    case ADJUST:
         if (record->event.pressed) {
-          layer_on(_SYMBOL);
+          layer_on(_ADJUST);
         } else {
-          layer_off(_SYMBOL);
+          layer_off(_ADJUST);
         }
         return false;
         break;
