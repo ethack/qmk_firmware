@@ -25,30 +25,73 @@ extern uint8_t is_master;
 #define _NUMPAD 1
 #define _EDIT 2
 #define _SYMBOL 3
+#define _SHORTCUT 4
 
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
   NUMPAD,
   EDIT,
   SYMBOL,
+  SHORTCUT,
   BACKLIT,
-  RGBRST
+  RGBRST,
 };
 
 enum macro_keycodes {
-  KC_SAMPLEMACRO,
+  KC_SHRUG,
 };
 
 #define KC______ KC_TRNS
 #define KC_XXXXX KC_NO
 
-#define KC_HYPESC HYPR_T(KC_ESC)
-// #define KC_CTLGUI LCTL_T(KC_LGUI)
+#define KC_CUT   C(KC_X)
+#define KC_COPY  C(KC_C)
+#define KC_PASTE C(KC_V)
+#define KC_SALL  C(KC_A)
+#define KC_UNDO  C(KC_Z)
+#define KC_SAVE  C(KC_S)
+#define KC_FIND  C(KC_F)
 
-#define KC_BSPC_E LT(_EDIT,   KC_BSPC)
-#define KC_TAB_N  LT(_NUMPAD, KC_TAB)
-#define KC_ENT_S  LT(_SYMBOL, KC_ENT)
-#define KC_SPC_S  LT(_SYMBOL, KC_SPC)
+// Browser
+#define KC_TABN  C(KC_T)
+#define KC_TABX  C(KC_W)
+#define KC_RLOAD C(KC_R)
+
+// Code editor
+#define KC_IDENT C(KC_RBRACKET)    // code editor indent
+#define KC_DDENT C(KC_LBRACKET)    // code editor dedent
+#define KC_CMENT C(KC_SLASH)       // code editor comment toggle
+
+// Google Docs Headings
+#define KC_HEAD1 C(A(KC_1))
+#define KC_HEAD2 C(A(KC_2))
+#define KC_HEAD3 C(A(KC_3))
+#define KC_HEAD4 C(A(KC_4))
+#define KC_HEAD5 C(A(KC_5))
+
+#define KC_SHOT  S(C(KC_PSCREEN))  // screenshot area to clipboard
+// #define KC_HYPRA  HYPR(KC_A)
+#define KC_TERM  HYPR(KC_L)  // quake terminal
+
+// workspace movement
+#define KC_WKUP  C(A(KC_UP))
+#define KC_WKDN  C(A(KC_DOWN))
+#define KC_WKLT  C(A(KC_LEFT))
+#define KC_WKRT  C(A(KC_RIGHT))
+
+// #define KC_HYPESC HYPR_T(KC_ESC)
+// Actually switches to shortcut layer not hyper key
+#define KC_HYPESC LT(_SHORTCUT, KC_ESC)
+// #define KC_CTLGUI LCTL_T(KC_LGUI)  // doesn't work
+
+// Dual purpose layer switching
+// #define KC_BSPC_E LT(_EDIT,   KC_BSPC)
+// #define KC_TAB_N  LT(_NUMPAD, KC_TAB)
+#define KC_ENT_S   LT(_SYMBOL, KC_ENT)
+#define KC_SPC_S   LT(_SYMBOL, KC_SPC)
+#define KC_TAB_CTL CTL_T(KC_TAB)
+#define KC_SPC_E   LT(_EDIT, KC_SPC)
+#define KC_BSPC_N  LT(_NUMPAD, KC_BSPC)
 
 // Keymap v2
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -60,43 +103,55 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        LSPO,     Z,     X,     C,     V,     B,                      N,     M,  COMM,   DOT,  SLSH,  RSPC,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  LCTL, BSPC_E, TAB_N,    ENT_S, SPC_S,  LALT \
+                               TAB_CTL, SPC_E, BSPC_N,    ENT_S, SPC_S,  LALT \
                               //`--------------------'  `--------------------'
   ),
 
   [_NUMPAD] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
-      XXXXX,     1,     2,     3,     4,     5,                      6,     7,     8,     9,  ASTR,  BSPC,\
+      XXXXX,     1,     2,     3,     4,     5,                      7,     8,     9,  MINS,   EQL,  BSPC,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-     HYPESC, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                   MINS,     4,     5,     6,  SCLN,   DEL,\
+     HYPESC, XXXXX, XXXXX, XXXXX, XXXXX,   SPC,                      4,     5,     6,  PLUS,  ASTR,   DEL,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LSPO, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                   PLUS,     1,     2,     3,  SLSH,   EQL,\
+       LSPO, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                      1,     2,     3,   DOT,  SLSH,   DLR,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  LCTL, BSPC_E, TAB_N,      ENT,     0,   DOT \
+                               TAB_CTL, SPC_E, BSPC_N,      ENT,     0,  COMM \
                               //`--------------------'  `--------------------'
-  ),  // Missing comma (under DOT), dollar sign (under 4), and space from numpad layer.
+  ),
 
   [_EDIT] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
-      XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                   HOME,  PGDN,  PGUP,   END,  VOLU,   DEL,\
+      XXXXX, XXXXX,  TABX, XXXXX, RLOAD,  TABN,                   HOME,  PGDN,  PGUP,   END,  VOLU,   DEL,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-     HYPESC,  MUTE,  VOLD,  VOLU,  PGUP,  PGDN,                   LEFT,  DOWN,    UP, RIGHT,  COPY,   CUT,\
+     HYPESC,  SALL,  SAVE, XXXXX,  FIND, XXXXX,                   LEFT,  DOWN,    UP, RIGHT, XXXXX, XXXXX,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LSPO,  UNDO,   CUT,  COPY, PASTE, XXXXX,                  PASTE,  LEFT,  DOWN, RIGHT,  VOLD,  MUTE,\
+       LSPO,  UNDO,   CUT,  COPY, PASTE, XXXXX,                  XXXXX,  LEFT,  DOWN, RIGHT,  VOLD,  MUTE,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  LCTL, BSPC_E, TAB_N,   ENT_S, SPC_S,  LALT \
+                               TAB_CTL, SPC_E, BSPC_N,    ENT_S, SPC_S,  LALT \
                               //`--------------------'  `--------------------'
   ),
 
   [_SYMBOL] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
-      XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                   UNDS,  LBRC,  RBRC, XXXXX,  ASTR,  BSPC,\
+      XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                   UNDS, XXXXX, XXXXX, XXXXX,   EQL,  BSPC,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-     HYPESC,  EXLM,    AT,  HASH,   DLR,  PERC,                   MINS,  LPRN,  RPRN,  PIPE,  SCLN,  QUOT,\
+     HYPESC,  EXLM,    AT,  HASH,   DLR,  PERC,                   MINS,  LBRC,  RBRC,  PIPE,  SCLN,  QUOT,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      XXXXX, XXXXX, XXXXX,  CIRC,  AMPR, XXXXX,                   PLUS,  LCBR,  RCBR,  BSLS,  SLSH, XXXXX,\
+       LSPO, XXXXX, XXXXX,  CIRC,  AMPR,  ASTR,                   PLUS,  LCBR,  RCBR,  BSLS,  SLSH, XXXXX,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  LCTL, BSPC_E, TAB_N,   ENT_S, SPC_S,  LALT \
+                               TAB_CTL, SPC_E, BSPC_N,    ENT_S, SPC_S,  LALT \
+                              //`--------------------'  `--------------------'
+  ),
+
+  [_SHORTCUT] = LAYOUT_kc( \
+  //,-----------------------------------------.                ,-----------------------------------------.
+      XXXXX, HEAD1, HEAD2, HEAD3, HEAD4, HEAD5,                  XXXXX,  MPRV,  MPLY,  MNXT, XXXXX, XXXXX,\
+  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
+     HYPESC,  SHOT, XXXXX, XXXXX, XXXXX, XXXXX,                  DDENT, IDENT,  WKUP,  TERM, XXXXX, XXXXX,\
+  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
+      XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX,  WKLT,  WKDN,  WKRT, CMENT, XXXXX,\
+  //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
+                               TAB_CTL, SPC_E, BSPC_N,    ENT_S, SPC_S,  LALT \
                               //`--------------------'  `--------------------'
   )
 };
@@ -218,6 +273,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
         return false;
         break;
+    case SHORTCUT:
+        if (record->event.pressed) {
+          layer_on(_SHORTCUT);
+        } else {
+          layer_off(_SHORTCUT);
+        }
+        return false;
+        break;
     case RGB_MOD:
       #ifdef RGBLIGHT_ENABLE
         if (record->event.pressed) {
@@ -237,6 +300,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
       #endif
       break;
+    // case KC_SHRUG:
+    //   if (record->event.pressed) {
+    //     // SEND_STRING("¯\\_(ツ)_/¯");
+    //     // ¯\_(ツ)_/¯
+    //     // requires UNICODE_ENABLE = yes in rules.mk but still doesn't work
+    //     send_unicode_hex_string("00AF 005C 005F 0028 30C4 0029 005F 002F 00AF");
+    //   }
+    //   return false;
+    //   break;
   }
   return true;
 }

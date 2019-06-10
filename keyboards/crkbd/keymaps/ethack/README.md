@@ -31,20 +31,25 @@
     - https://www.reddit.com/r/MechanicalKeyboards/comments/6mzayi/with_qmk_or_tmk_can_i_have_the_spacebar_switch_to/
 - https://www.reddit.com/r/olkb/comments/a0texz/whatre_your_favorite_qmk_hacks/
 - https://www.keebtalk.com/t/show-me-your-favorite-qmk-hacks/2682/36
+- https://docs.qmk.fm/#/feature_macros?id=super-alt%e2%86%aftab
+- https://www.reddit.com/r/olkb/comments/7av182/could_i_please_have_some_help_with_simple/
 
 # Problems
 ## Keymap
-- () are duplicated on the raise layer due to SpaceCadet usage.
-- Would like backspace on the number layer too. But the I need a place for delete. Shift delete might work ok. I just reached for that by instinct.
-    - https://www.reddit.com/r/olkb/comments/4u36wk/qmk_question_how_do_i_make_backspace_send_delete/
-    - https://github.com/qmk/qmk_firmware/issues/61
-- I think I'd really like d/f to trigger the arrow keys. I keep hitting d expecting that to do the job and it doesn't. It seems like this would be pretty hard to do.
-    - https://www.reddit.com/r/olkb/comments/8eticz/how_to_activate_a_layer_with_a_combination/
 - Cheatsheet
-- Add a bunch of other special keys to the raise layer. Things like favorites, calculator, back, forward, play/pause.
 - A good percent of the time when I try to type - it comes out ' h'. Figure out why this is. Do I release the raise key too soon?
-- Would be nice to have shortcuts for switching desktops. Though maybe I should figure out what the OS shortcuts are first haha.
-- In general I prefer my right hand to do things like navigation. Things that I can do there instead of with the mouse. But my left hand is useful for things I do in combination with the mouse (copy/paste, save, new tab, close tab, screenshot, volume controls) and I want to make sure those stay one handed. I often need to put in a space when I use the mouse to place the cursor. There's no space on the left hand anymore.
+     - I saw something about changing the TAPPING_TERM for a single key. Maybe this could help?
+- In general I prefer my right hand to do things like navigation. Things that I can do there instead of with the mouse. But my left hand is useful for things I do in combination with the mouse (copy/paste, save, new tab, close tab, screenshot, volume controls) and I want to make sure those stay one handed.
+- I rarely use the LALT key under my right thumb.
+- By combining ctl and tab on the same key I can't use that key combo.
+- The auto uppercase timing is too short. I tend to hit keys longer and end up with a lot of accidental caps. Try increasing 50 ms or so.
+- It would be very nice to have an auto repeat of my thumb backspace, but I won't give up the number shortcut. Maybe a double tap and hold could be auto repeat.
+- Autoshift also gets in the way of holding down the jk keys in vim.  I miss that the most and I'm not sure I use the autoshift feature anyway. I instinctually reach for the shift key. But I think I could train myself to use it. But I don't have any other use for the shift keys then right now and they work well as ().
+    - Create a key that turns autoshift on/off.
+- Would like shrug emoticon `¯\_(ツ)_/¯`
+    - Had to enable Unicode in rules.mk. But that resulted in:
+    ` * The firmware size is approaching the maximum - 27996/28672 (676 bytes free)`
+    - Probably better way is to map to a hyper combo and use AutoKey
 
 ## Shortcuts to learn
 - ctrl-backspace deletes a word. I think Textblade makes use of this and other similar ones.
@@ -71,10 +76,27 @@
     - I think over time I'll probably use my right thumb for both enter and space. That means I can use the left two thumb keys for something different on tap.
 - Volume controls aren't working.
     - Needed `EXTRAKEY_ENABLE` in the rules.mk file.
-
+- () are duplicated on the raise layer due to SpaceCadet usage.
+    - Removed () and have been using shift just fine.
+- Would like backspace on the number layer too. But the I need a place for delete. Shift delete might work ok. I just reached for that by instinct.
+    - https://www.reddit.com/r/olkb/comments/4u36wk/qmk_question_how_do_i_make_backspace_send_delete/
+    - https://github.com/qmk/qmk_firmware/issues/61
+    - Delete is on the edit later now instead and backspace on number layer.
+- I think I'd really like d/f to trigger the arrow keys. I keep hitting d expecting that to do the job and it doesn't. It seems like this would be pretty hard to do.
+    - https://www.reddit.com/r/olkb/comments/8eticz/how_to_activate_a_layer_with_a_combination/
+    - I've gotten used to movement with the thumb key activating the edit layer.
+- Add a bunch of other special keys to the raise layer. Things like favorites, calculator, back, forward, play/pause.
+    - I have a special shortcuts layer now.
+- Would be nice to have shortcuts for switching desktops. Though maybe I should figure out what the OS shortcuts are first haha.
+    - On the shortcut layer.
+- I often need to put in a space when I use the mouse to place the cursor. There's no space on the left hand anymore.
+    - Space is on both halves now.
 
 ## Keymap v2
 - I tried to keep any keys I'd already gotten used to in the same place and tried to keep keys between layers the same as well when it made sense.
 - Access to [] and {}, -_, |\, and really all special characters. May just take some getting used to.
 - It would be nice to have a tab key easier to reach. Maybe that can go under my left thumb. Escape might go well there too.
 - Set up textblade like keymap for copy,cut,paste and combo keys. KC_COPY and friends exist. Those keycodes don't seem to work on linux. Try mapping them to the right key combo.
+- Missing equals from keymap.
+- For left thumb cluster try: lctl/tab, space/edit, bspc/num
+- Typing IPs on the number layer is really difficult due to the period placement. I think I should shift the numberpad over one even if it doesn't make the lining up so nice.
