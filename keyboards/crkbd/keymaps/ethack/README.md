@@ -1,3 +1,6 @@
+```
+util/docker_build.sh crkbd:ethack:avrdude
+```
 
 # Reference
 - https://docs.qmk.fm/#/keycodes
@@ -37,19 +40,23 @@
 # Problems
 ## Keymap
 - Cheatsheet
-- A good percent of the time when I try to type - it comes out ' h'. Figure out why this is. Do I release the raise key too soon?
+- **A good percent of the time when I try to type - it comes out ' h'. Figure out why this is. Do I release the raise key too soon?**
      - I saw something about changing the TAPPING_TERM for a single key. Maybe this could help?
 - In general I prefer my right hand to do things like navigation. Things that I can do there instead of with the mouse. But my left hand is useful for things I do in combination with the mouse (copy/paste, save, new tab, close tab, screenshot, volume controls) and I want to make sure those stay one handed.
-- I rarely use the LALT key under my right thumb.
+- **I rarely use the LALT key under my right thumb.** Also, this key doesn't have a second function. Maybe backspace or delete? Or another tab?
 - By combining ctl and tab on the same key I can't use that key combo.
-- The auto uppercase timing is too short. I tend to hit keys longer and end up with a lot of accidental caps. Try increasing 50 ms or so.
-- It would be very nice to have an auto repeat of my thumb backspace, but I won't give up the number shortcut. Maybe a double tap and hold could be auto repeat.
-- Autoshift also gets in the way of holding down the jk keys in vim.  I miss that the most and I'm not sure I use the autoshift feature anyway. I instinctually reach for the shift key. But I think I could train myself to use it. But I don't have any other use for the shift keys then right now and they work well as ().
+- It would be very nice to have an auto repeat of my thumb backspace, but I won't give up the number shortcut. Maybe a double/triple tap and hold could be auto repeat.
     - Create a key that turns autoshift on/off.
 - Would like shrug emoticon `¯\_(ツ)_/¯`
     - Had to enable Unicode in rules.mk. But that resulted in:
     ` * The firmware size is approaching the maximum - 27996/28672 (676 bytes free)`
     - Probably better way is to map to a hyper combo and use AutoKey
+- I have problems finding the special characters still. Maybe it would be better to have them in more unique locations that are memorable.
+- I can't use the windows key or function keys while on Windows (or anytime, but that's when I miss it).
+- My pinky gets too tired hitting backspace all the time. Remap this to something else.
+- I use - quite a bit. I wonder if I could have it on my default layer somewhere. Maybe LALT or BKSP.
+    - Will try backspace first and see how that goes. But LALT might be better as I don't already have muscle memory for that one.
+
 
 ## Shortcuts to learn
 - ctrl-backspace deletes a word. I think Textblade makes use of this and other similar ones.
@@ -91,6 +98,10 @@
     - On the shortcut layer.
 - I often need to put in a space when I use the mouse to place the cursor. There's no space on the left hand anymore.
     - Space is on both halves now.
+- Autoshift also gets in the way of holding down the jk keys in vim.  I miss that the most and I'm not sure I use the autoshift feature anyway. I instinctually reach for the shift key. But I think I could train myself to use it. But I don't have any other use for the shift keys then right now and they work well as ().
+    - Disabled autoshift.
+- Sometimes I hold the number pad keys too long and get the shifted keys. Switch these to the numberpad keycodes.
+    - Should be taken care of by disabling auto-shift.
 
 ## Keymap v2
 - I tried to keep any keys I'd already gotten used to in the same place and tried to keep keys between layers the same as well when it made sense.

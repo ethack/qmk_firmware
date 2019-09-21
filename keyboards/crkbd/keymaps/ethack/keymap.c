@@ -79,6 +79,16 @@ enum macro_keycodes {
 #define KC_WKLT  C(A(KC_LEFT))
 #define KC_WKRT  C(A(KC_RIGHT))
 
+// Chrome extension media keys chrome://extensions/shortcuts
+// Key Socket Media Keys or Streamkeys
+// When these don't work you have to:
+// 1. Change the shortcut in Chrome. It has to be one that hasn't been registered globally before (maybe since reboot or restarting Chrome?).
+// 2. Switch the shortcut to Chrome-only.
+// 3. Switch the shortcut to Global
+#define KC_CPRV  A(S(KC_3))
+#define KC_CPLY  A(S(KC_2))
+#define KC_CNXT  A(S(KC_1))
+
 // #define KC_HYPESC HYPR_T(KC_ESC)
 // Actually switches to shortcut layer not hyper key
 #define KC_HYPESC LT(_SHORTCUT, KC_ESC)
@@ -90,6 +100,7 @@ enum macro_keycodes {
 #define KC_ENT_S   LT(_SYMBOL, KC_ENT)
 #define KC_SPC_S   LT(_SYMBOL, KC_SPC)
 #define KC_TAB_CTL CTL_T(KC_TAB)
+#define KC_DEL_ALT ALT_T(KC_DEL)
 #define KC_SPC_E   LT(_EDIT, KC_SPC)
 #define KC_BSPC_N  LT(_NUMPAD, KC_BSPC)
 
@@ -97,13 +108,13 @@ enum macro_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
-        GRV,     Q,     W,     E,     R,     T,                      Y,     U,     I,     O,     P,  BSPC,\
+        GRV,     Q,     W,     E,     R,     T,                      Y,     U,     I,     O,     P,  MINS,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
      HYPESC,     A,     S,     D,     F,     G,                      H,     J,     K,     L,  SCLN,  QUOT,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        LSPO,     Z,     X,     C,     V,     B,                      N,     M,  COMM,   DOT,  SLSH,  RSPC,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                               TAB_CTL, SPC_E, BSPC_N,    ENT_S, SPC_S,  LALT \
+                               TAB_CTL, SPC_E, BSPC_N,    ENT_S, SPC_S, DEL_ALT \
                               //`--------------------'  `--------------------'
   ),
 
@@ -111,11 +122,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------.                ,-----------------------------------------.
       XXXXX,     1,     2,     3,     4,     5,                      7,     8,     9,  MINS,   EQL,  BSPC,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-     HYPESC, XXXXX, XXXXX, XXXXX, XXXXX,   SPC,                      4,     5,     6,  PLUS,  ASTR,   DEL,\
+     HYPESC, XXXXX, XXXXX, XXXXX, XXXXX,   SPC,                      4,     5,     6,  PLUS,  ASTR,  COMM,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        LSPO, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                      1,     2,     3,   DOT,  SLSH,   DLR,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                               TAB_CTL, SPC_E, BSPC_N,      ENT,     0,  COMM \
+                               TAB_CTL, SPC_E, BSPC_N,      ENT,     0, DEL_ALT \
                               //`--------------------'  `--------------------'
   ),
 
@@ -127,7 +138,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        LSPO,  UNDO,   CUT,  COPY, PASTE, XXXXX,                  XXXXX,  LEFT,  DOWN, RIGHT,  VOLD,  MUTE,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                               TAB_CTL, SPC_E, BSPC_N,    ENT_S, SPC_S,  LALT \
+                               TAB_CTL, SPC_E, BSPC_N,    ENT_S, SPC_S, DEL_ALT \
                               //`--------------------'  `--------------------'
   ),
 
@@ -139,19 +150,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        LSPO, XXXXX, XXXXX,  CIRC,  AMPR,  ASTR,                   PLUS,  LCBR,  RCBR,  BSLS,  SLSH, XXXXX,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                               TAB_CTL, SPC_E, BSPC_N,    ENT_S, SPC_S,  LALT \
+                               TAB_CTL, SPC_E, BSPC_N,    ENT_S, SPC_S, DEL_ALT \
                               //`--------------------'  `--------------------'
   ),
 
   [_SHORTCUT] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
-      XXXXX, HEAD1, HEAD2, HEAD3, HEAD4, HEAD5,                  XXXXX,  MPRV,  MPLY,  MNXT, XXXXX, XXXXX,\
+      XXXXX, HEAD1, HEAD2, HEAD3, HEAD4, HEAD5,                  XXXXX,  CPRV,  CPLY,  CNXT, XXXXX, XXXXX,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
      HYPESC,  SHOT, XXXXX, XXXXX, XXXXX, XXXXX,                  DDENT, IDENT,  WKUP,  TERM, XXXXX, XXXXX,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
       XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX,  WKLT,  WKDN,  WKRT, CMENT, XXXXX,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                               TAB_CTL, SPC_E, BSPC_N,    ENT_S, SPC_S,  LALT \
+                               TAB_CTL, SPC_E, BSPC_N,    ENT_S, SPC_S, DEL_ALT \
                               //`--------------------'  `--------------------'
   )
 };
