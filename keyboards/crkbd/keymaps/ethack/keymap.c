@@ -132,35 +132,35 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_EDIT] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
-      XXXXX, XXXXX,  TABX, XXXXX, RLOAD,  TABN,                   HOME,  PGDN,  PGUP,   END,  VOLU,   DEL,\
+      XXXXX, XXXXX,  TABX, XXXXX, RLOAD,  TABN,                   HOME,  PGDN,  PGUP,   END, XXXXX,   DEL,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-     HYPESC,  SALL,  SAVE, XXXXX,  FIND, XXXXX,                   LEFT,  DOWN,    UP, RIGHT, XXXXX, XXXXX,\
+     HYPESC,  SALL,  SAVE, XXXXX,  FIND, XXXXX,                   LEFT,  DOWN,    UP, RIGHT, XXXXX,  LGUI,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LSPO,  UNDO,   CUT,  COPY, PASTE, XXXXX,                  XXXXX,  LEFT,  DOWN, RIGHT,  VOLD,  MUTE,\
+       LSPO,  UNDO,   CUT,  COPY, PASTE, XXXXX,                  XXXXX,  LEFT,  DOWN, RIGHT, XXXXX, XXXXX,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                               TAB_CTL, SPC_E, BSPC_N,    ENT_S, SPC_S, DEL_ALT \
+                               TAB_CTL, SPC_E, BSPC_N,    ENT_S, SPC_S,  DEL \
                               //`--------------------'  `--------------------'
   ),
 
   [_SYMBOL] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
-      XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                   UNDS, XXXXX, XXXXX, XXXXX,   EQL,  BSPC,\
+         F1,    F2,    F3,    F4,    F5,    F6,                     F7,    F8,    F9,   F10,   F11,   F12,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
      HYPESC,  EXLM,    AT,  HASH,   DLR,  PERC,                   MINS,  LBRC,  RBRC,  PIPE,  SCLN,  QUOT,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LSPO, XXXXX, XXXXX,  CIRC,  AMPR,  ASTR,                   PLUS,  LCBR,  RCBR,  BSLS,  SLSH, XXXXX,\
+       LSPO, XXXXX, XXXXX,  CIRC,  AMPR,  ASTR,                   PLUS,  LCBR,  RCBR,  BSLS,  SLSH,   EQL,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                               TAB_CTL, SPC_E, BSPC_N,    ENT_S, SPC_S, DEL_ALT \
+                               TAB_CTL, SPC_E,   BSPC,    ENT_S, SPC_S, DEL_ALT \
                               //`--------------------'  `--------------------'
   ),
 
   [_SHORTCUT] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
-      XXXXX, HEAD1, HEAD2, HEAD3, HEAD4, HEAD5,                  XXXXX,  CPRV,  CPLY,  CNXT, XXXXX, XXXXX,\
+      XXXXX, HEAD1, HEAD2, HEAD3, HEAD4, HEAD5,                  XXXXX,  CPRV,  CPLY,  CNXT, XXXXX,  VOLU,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-     HYPESC,  SHOT, XXXXX, XXXXX, XXXXX, XXXXX,                  DDENT, IDENT,  WKUP,  TERM, XXXXX, XXXXX,\
+     HYPESC,  SHOT, XXXXX, XXXXX, XXXXX, XXXXX,                  DDENT, IDENT,  WKUP,  TERM, XXXXX,  VOLD,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX,  WKLT,  WKDN,  WKRT, CMENT, XXXXX,\
+      XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX,  WKLT,  WKDN,  WKRT, CMENT,  MUTE,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
                                TAB_CTL, SPC_E, BSPC_N,    ENT_S, SPC_S, DEL_ALT \
                               //`--------------------'  `--------------------'

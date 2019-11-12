@@ -1,7 +1,3 @@
-```
-util/docker_build.sh crkbd:ethack:avrdude
-```
-
 # Reference
 - https://docs.qmk.fm/#/keycodes
     - https://docs.qmk.fm/#/feature_audio
@@ -16,7 +12,6 @@ util/docker_build.sh crkbd:ethack:avrdude
 # Features in use now
 - https://docs.qmk.fm/#/feature_space_cadet
 - Hyper Key `HYPR_T(KC_ESC)`
-- https://docs.qmk.fm/#/feature_auto_shift?id=auto-shift-why-do-we-need-a-shift-key
 
 
 # Features to try later
@@ -43,7 +38,6 @@ util/docker_build.sh crkbd:ethack:avrdude
 - **A good percent of the time when I try to type - it comes out ' h'. Figure out why this is. Do I release the raise key too soon?**
      - I saw something about changing the TAPPING_TERM for a single key. Maybe this could help?
 - In general I prefer my right hand to do things like navigation. Things that I can do there instead of with the mouse. But my left hand is useful for things I do in combination with the mouse (copy/paste, save, new tab, close tab, screenshot, volume controls) and I want to make sure those stay one handed.
-- **I rarely use the LALT key under my right thumb.** Also, this key doesn't have a second function. Maybe backspace or delete? Or another tab?
 - By combining ctl and tab on the same key I can't use that key combo.
 - It would be very nice to have an auto repeat of my thumb backspace, but I won't give up the number shortcut. Maybe a double/triple tap and hold could be auto repeat.
     - Create a key that turns autoshift on/off.
@@ -53,9 +47,16 @@ util/docker_build.sh crkbd:ethack:avrdude
     - Probably better way is to map to a hyper combo and use AutoKey
 - I have problems finding the special characters still. Maybe it would be better to have them in more unique locations that are memorable.
 - I can't use the windows key or function keys while on Windows (or anytime, but that's when I miss it).
-- My pinky gets too tired hitting backspace all the time. Remap this to something else.
-- I use - quite a bit. I wonder if I could have it on my default layer somewhere. Maybe LALT or BKSP.
-    - Will try backspace first and see how that goes. But LALT might be better as I don't already have muscle memory for that one.
+    - I have a windows key in the edit layer, but that doesn't let me do key combos like for Regolith. Find a way to put the super key in the main layer or figure out a good different key to use.
+    - Maybe I can replace the left space with a Windows key. Though that means re-learning the symbol layer trigger. This could move to enter since it's already there but I don't use that key.
+    - For Regolith I'm looking at the shortcuts and I think I might need a special layer to do all these. For instance, accessing the numbers or arrows while holding down super is going to be a pain. Though I could just remap the shortcuts too like using hjkl instead of arrow keys or yuiop (top row right hand) for the numbers.
+        - https://github.com/regolith-linux/regolith-desktop/wiki/Getting-Started
+- I haven't messed with layers that stay put at all. I've only used key that change while holding another.
+    - Numpad
+- For gaming the "trigger space on keyup" is very annoying. All of the thumb keys will have problems because they either will trigger on keyup or there will be a delay for the held down function.
+    - I should have a separate gaming layer that I can activate.
+    - The only thing I should need the edit layer for in a game is the volume controls. Maybe I can move those to the shortcuts layer with the play/pause. (done)
+- Right now the enter hold key is the symbol layer. But I never use this.
 
 
 ## Shortcuts to learn
@@ -96,14 +97,6 @@ util/docker_build.sh crkbd:ethack:avrdude
     - I have a special shortcuts layer now.
 - Would be nice to have shortcuts for switching desktops. Though maybe I should figure out what the OS shortcuts are first haha.
     - On the shortcut layer.
-- I often need to put in a space when I use the mouse to place the cursor. There's no space on the left hand anymore.
-    - Space is on both halves now.
-- Autoshift also gets in the way of holding down the jk keys in vim.  I miss that the most and I'm not sure I use the autoshift feature anyway. I instinctually reach for the shift key. But I think I could train myself to use it. But I don't have any other use for the shift keys then right now and they work well as ().
-    - Disabled autoshift.
-- Sometimes I hold the number pad keys too long and get the shifted keys. Switch these to the numberpad keycodes.
-    - Should be taken care of by disabling auto-shift.
-
-## Keymap v2
 - I tried to keep any keys I'd already gotten used to in the same place and tried to keep keys between layers the same as well when it made sense.
 - Access to [] and {}, -_, |\, and really all special characters. May just take some getting used to.
 - It would be nice to have a tab key easier to reach. Maybe that can go under my left thumb. Escape might go well there too.
@@ -111,3 +104,17 @@ util/docker_build.sh crkbd:ethack:avrdude
 - Missing equals from keymap.
 - For left thumb cluster try: lctl/tab, space/edit, bspc/num
 - Typing IPs on the number layer is really difficult due to the period placement. I think I should shift the numberpad over one even if it doesn't make the lining up so nice.
+- I often need to put in a space when I use the mouse to place the cursor. There's no space on the left hand anymore.
+    - Space is on both halves now.
+- Autoshift also gets in the way of holding down the jk keys in vim.  I miss that the most and I'm not sure I use the autoshift feature anyway. I instinctually reach for the shift key. But I think I could train myself to use it. But I don't have any other use for the shift keys then right now and they work well as ().
+    - Disabled autoshift.
+- Sometimes I hold the number pad keys too long and get the shifted keys. Switch these to the numberpad keycodes.
+    - Should be taken care of by disabling auto-shift.
+- My pinky gets too tired hitting backspace all the time. Remap this to something else.
+    - It is now '-'
+    - I use - quite a bit. I wonder if I could have it on my default layer somewhere. Maybe LALT or BKSP.
+    - Will try backspace first and see how that goes. But LALT might be better as I don't already have muscle memory for that one.
+- **I rarely use the LALT key under my right thumb.** Also, this key doesn't have a second function. Maybe backspace or delete? Or another tab?
+    - This is now delete on press and LALT on hold. I use LALT for alt-tab more often now.
+- Be able to hold delete or backspace.
+    - Put these on edit and symbol layers.
