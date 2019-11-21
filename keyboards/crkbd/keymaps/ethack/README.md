@@ -1,3 +1,7 @@
+# Usage
+
+Edit the keymap files. Run `./flash.sh` and press the flash button on the keyboard twice when prompted.
+
 # Reference
 - https://docs.qmk.fm/#/keycodes
     - https://docs.qmk.fm/#/feature_audio
@@ -57,6 +61,7 @@
     - I should have a separate gaming layer that I can activate.
     - The only thing I should need the edit layer for in a game is the volume controls. Maybe I can move those to the shortcuts layer with the play/pause. (done)
 - Right now the enter hold key is the symbol layer. But I never use this.
+- The keys get messed up in one of my BIOS. I think the keyup is sent too fast for it to register when I use one of my dual-purpose keys (escape, enter, space) and the BIOS just thinks I'm holding it down. I have to do something like "tap enter, pause, hold enter" to get it to only register once.
 
 
 ## Shortcuts to learn
