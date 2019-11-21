@@ -89,6 +89,9 @@ enum macro_keycodes {
 #define KC_CPLY  A(S(KC_2))
 #define KC_CNXT  A(S(KC_1))
 
+// Ctrl-Alt-Del
+#define KC_CAD LCTL(LALT(KC_DEL))
+
 // #define KC_HYPESC HYPR_T(KC_ESC)
 // Actually switches to shortcut layer not hyper key
 #define KC_HYPESC LT(_SHORTCUT, KC_ESC)
@@ -156,7 +159,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_SHORTCUT] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
-      XXXXX, HEAD1, HEAD2, HEAD3, HEAD4, HEAD5,                  XXXXX,  CPRV,  CPLY,  CNXT, XXXXX,  VOLU,\
+        CAD, HEAD1, HEAD2, HEAD3, HEAD4, HEAD5,                  XXXXX,  CPRV,  CPLY,  CNXT, XXXXX,  VOLU,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
      HYPESC,  SHOT, XXXXX, XXXXX, XXXXX, XXXXX,                  DDENT, IDENT,  WKUP,  TERM, XXXXX,  VOLD,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
