@@ -67,10 +67,6 @@ Edit the keymap files. Run `./flash.sh` and press the flash button on the keyboa
 ### Next revision
 - Layer right above base layer. Has set up for gaming and BIOS that doesn't have any double keys. Most of this layer will be a passthrough to the base  layer.
 - Make a gaming layer that is similar to above but has non special keys on the bottom buttons so that they can be reached with my pinky from my mouse. (Maybe don't do this since I'm using tenting currently.)
-- Layer switching on the shortcuts layer.
-- LED controls on the shortcuts layer.
-- Find a place to put Windows key. Possibly right space or `. If ` is not windows them make it a ctrl when held. Could also be enter hold.
-- Find a place that +/- can be next to each other and easily accessed with ctrl.
 
 
 ## Shortcuts to learn

@@ -43,6 +43,7 @@ enum macro_keycodes {
 
 #define KC______ KC_TRNS
 #define KC_XXXXX KC_NO
+#define XXXXX KC_NO
 
 #define KC_CUT   C(KC_X)
 #define KC_COPY  C(KC_C)
@@ -58,26 +59,26 @@ enum macro_keycodes {
 #define KC_RLOAD C(KC_R)
 
 // Code editor
-#define KC_IDENT C(KC_RBRACKET)    // code editor indent
-#define KC_DDENT C(KC_LBRACKET)    // code editor dedent
-#define KC_CMENT C(KC_SLASH)       // code editor comment toggle
+#define IDENT C(KC_RBRACKET)    // code editor indent
+#define DDENT C(KC_LBRACKET)    // code editor dedent
+#define CMENT C(KC_SLASH)       // code editor comment toggle
 
 // Google Docs Headings
-#define KC_HEAD1 C(A(KC_1))
-#define KC_HEAD2 C(A(KC_2))
-#define KC_HEAD3 C(A(KC_3))
-#define KC_HEAD4 C(A(KC_4))
-#define KC_HEAD5 C(A(KC_5))
+#define HEAD1 C(A(KC_1))
+#define HEAD2 C(A(KC_2))
+#define HEAD3 C(A(KC_3))
+#define HEAD4 C(A(KC_4))
+#define HEAD5 C(A(KC_5))
 
-#define KC_SHOT  S(C(KC_PSCREEN))  // screenshot area to clipboard
+#define SHOT  S(C(KC_PSCREEN))  // screenshot area to clipboard
 // #define KC_HYPRA  HYPR(KC_A)
-#define KC_TERM  HYPR(KC_L)  // quake terminal
+#define TERM  HYPR(KC_L)  // quake terminal
 
 // workspace movement
-#define KC_WKUP  C(A(KC_UP))
-#define KC_WKDN  C(A(KC_DOWN))
-#define KC_WKLT  C(A(KC_LEFT))
-#define KC_WKRT  C(A(KC_RIGHT))
+#define WKUP C(A(KC_UP))
+#define WKDN C(A(KC_DOWN))
+#define WKLT C(A(KC_LEFT))
+#define WKRT C(A(KC_RIGHT))
 
 // Chrome extension media keys chrome://extensions/shortcuts
 // Key Socket Media Keys or Streamkeys
@@ -85,45 +86,62 @@ enum macro_keycodes {
 // 1. Change the shortcut in Chrome. It has to be one that hasn't been registered globally before (maybe since reboot or restarting Chrome?).
 // 2. Switch the shortcut to Chrome-only.
 // 3. Switch the shortcut to Global
-#define KC_CPRV  A(S(KC_3))
-#define KC_CPLY  A(S(KC_2))
-#define KC_CNXT  A(S(KC_1))
+#define CPRV  A(S(KC_3))
+#define CPLY  A(S(KC_2))
+#define CNXT  A(S(KC_1))
 
 // Ctrl-Alt-Del
-#define KC_CAD LCTL(LALT(KC_DEL))
+#define CAD LCTL(LALT(KC_DEL))
 
 // #define KC_HYPESC HYPR_T(KC_ESC)
 // Actually switches to shortcut layer not hyper key
 #define KC_HYPESC LT(_SHORTCUT, KC_ESC)
 // #define KC_CTLGUI LCTL_T(KC_LGUI)  // doesn't work
 
-// Dual purpose layer switching
+// Dual purpose keys
 // #define KC_BSPC_E LT(_EDIT,   KC_BSPC)
 // #define KC_TAB_N  LT(_NUMPAD, KC_TAB)
-#define KC_ENT_S   LT(_SYMBOL, KC_ENT)
+#define KC_ENT_W   LWIN_T(KC_ENT)
 #define KC_SPC_S   LT(_SYMBOL, KC_SPC)
-#define KC_TAB_CTL CTL_T(KC_TAB)
-#define KC_DEL_ALT ALT_T(KC_DEL)
+#define KC_TAB_CTL LCTL_T(KC_TAB)
+#define KC_DEL_ALT LALT_T(KC_DEL)
 #define KC_SPC_E   LT(_EDIT, KC_SPC)
 #define KC_BSPC_N  LT(_NUMPAD, KC_BSPC)
+#define KC_GRV_CTL LCTL_T(KC_GRV)
+
+// Layer toggles
+#define QWER TG(_QWERTY)
+#define NUMP TG(_NUMPAD)
+#define EDIT TG(_EDIT)
+#define SYMB TG(SYMBOL)
+#define SHOR TG(_SHORTCUT)
+
+// RGB
+#define R_MOD RGB_MOD
+#define R_HUI RGB_HUI
+#define R_HUD RGB_HUD
+#define R_M_P RGB_MODE_PLAIN
+#define R_M_X RGB_MODE_XMAS
+#define R_M_G RGB_MODE_GRADIENT
+
 
 // Keymap v2
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
-        GRV,     Q,     W,     E,     R,     T,                      Y,     U,     I,     O,     P,  MINS,\
+    GRV_CTL,     Q,     W,     E,     R,     T,                      Y,     U,     I,     O,     P,  MINS,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
      HYPESC,     A,     S,     D,     F,     G,                      H,     J,     K,     L,  SCLN,  QUOT,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        LSPO,     Z,     X,     C,     V,     B,                      N,     M,  COMM,   DOT,  SLSH,  RSPC,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                               TAB_CTL, SPC_E, BSPC_N,    ENT_S, SPC_S, DEL_ALT \
+                               TAB_CTL, SPC_E, BSPC_N,    ENT_W, SPC_S, DEL_ALT \
                               //`--------------------'  `--------------------'
   ),
 
   [_NUMPAD] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
-      XXXXX,     1,     2,     3,     4,     5,                      7,     8,     9,  MINS,   EQL,  BSPC,\
+    GRV_CTL,     1,     2,     3,     4,     5,                      7,     8,     9,  MINS,   EQL,  BSPC,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
      HYPESC, XXXXX, XXXXX, XXXXX, XXXXX,   SPC,                      4,     5,     6,  PLUS,  ASTR,  COMM,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
@@ -135,13 +153,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_EDIT] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
-      XXXXX, XXXXX,  TABX, XXXXX, RLOAD,  TABN,                   HOME,  PGDN,  PGUP,   END, XXXXX,   DEL,\
+    GRV_CTL, XXXXX,  TABX, XXXXX, RLOAD,  TABN,                   HOME,  PGDN,  PGUP,   END, XXXXX,   DEL,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
      HYPESC,  SALL,  SAVE, XXXXX,  FIND, XXXXX,                   LEFT,  DOWN,    UP, RIGHT, XXXXX,  LGUI,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        LSPO,  UNDO,   CUT,  COPY, PASTE, XXXXX,                  XXXXX,  LEFT,  DOWN, RIGHT, XXXXX, XXXXX,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                               TAB_CTL, SPC_E, BSPC_N,    ENT_S, SPC_S,  DEL \
+                               TAB_CTL, SPC_E, BSPC_N,    ENT_W, SPC_S,  DEL \
                               //`--------------------'  `--------------------'
   ),
 
@@ -153,19 +171,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        LSPO, XXXXX, XXXXX,  CIRC,  AMPR,  ASTR,                   PLUS,  LCBR,  RCBR,  BSLS,  SLSH,   EQL,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                               TAB_CTL, SPC_E,   BSPC,    ENT_S, SPC_S, DEL_ALT \
+                               TAB_CTL, SPC_E,   BSPC,    ENT_W, SPC_S, DEL_ALT \
                               //`--------------------'  `--------------------'
   ),
 
-  [_SHORTCUT] = LAYOUT_kc( \
+  [_SHORTCUT] = LAYOUT( \
   //,-----------------------------------------.                ,-----------------------------------------.
-        CAD, HEAD1, HEAD2, HEAD3, HEAD4, HEAD5,                  XXXXX,  CPRV,  CPLY,  CNXT, XXXXX,  VOLU,\
+        CAD, HEAD1, HEAD2, HEAD3, HEAD4, HEAD5,                  XXXXX,  CPRV,  CPLY,  CNXT, KC_PPLS, KC_VOLU,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-     HYPESC,  SHOT, XXXXX, XXXXX, XXXXX, XXXXX,                  DDENT, IDENT,  WKUP,  TERM, XXXXX,  VOLD,\
+  KC_HYPESC,  SHOT, R_M_P, R_HUD, R_HUI, R_M_G,                  DDENT, IDENT,  WKUP,  TERM, KC_PMNS, KC_VOLD,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX,  WKLT,  WKDN,  WKRT, CMENT,  MUTE,\
+       QWER,  NUMP,  EDIT,  SYMB,  SHOR,RGBRST,                  XXXXX,  WKLT,  WKDN,  WKRT, CMENT, KC_MUTE,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                               TAB_CTL, SPC_E, BSPC_N,    ENT_S, SPC_S, DEL_ALT \
+                                  XXXXX, XXXXX, XXXXX,    XXXXX, XXXXX, XXXXX \
                               //`--------------------'  `--------------------'
   )
 };
@@ -314,15 +332,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
       #endif
       break;
-    // case KC_SHRUG:
-    //   if (record->event.pressed) {
-    //     // SEND_STRING("¯\\_(ツ)_/¯");
-    //     // ¯\_(ツ)_/¯
-    //     // requires UNICODE_ENABLE = yes in rules.mk but still doesn't work
-    //     send_unicode_hex_string("00AF 005C 005F 0028 30C4 0029 005F 002F 00AF");
-    //   }
-    //   return false;
-    //   break;
   }
   return true;
 }

@@ -15,7 +15,12 @@ MIDI_ENABLE = no            # MIDI controls
 AUDIO_ENABLE = no           # Audio output on port C6
 UNICODE_ENABLE = no         # Unicode
 BLUETOOTH_ENABLE = no       # Enable Bluetooth with the Adafruit EZ-Key HID
+
 RGBLIGHT_ENABLE = yes       # Enable WS2812 RGB underlight.
+# Note: the following caused the firmware to be too big :(
+# RGBLIGHT_ENABLE = no
+# RGB_MATRIX_ENABLE = WS2812
+
 SWAP_HANDS_ENABLE = no      # Enable one-hand typing
 
 # Do not enable SLEEP_LED_ENABLE. it uses the same timer as BACKLIGHT_ENABLE
