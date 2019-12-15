@@ -35,12 +35,10 @@ Edit the keymap files. Run `./flash.sh` and press the flash button on the keyboa
 - https://www.keebtalk.com/t/show-me-your-favorite-qmk-hacks/2682/36
 - https://docs.qmk.fm/#/feature_macros?id=super-alt%e2%86%aftab
 - https://www.reddit.com/r/olkb/comments/7av182/could_i_please_have_some_help_with_simple/
+- LEDs!
 
 # Problems
 ## Keymap
-- Cheatsheet
-- **A good percent of the time when I try to type - it comes out ' h'. Figure out why this is. Do I release the raise key too soon?**
-     - I saw something about changing the TAPPING_TERM for a single key. Maybe this could help?
 - In general I prefer my right hand to do things like navigation. Things that I can do there instead of with the mouse. But my left hand is useful for things I do in combination with the mouse (copy/paste, save, new tab, close tab, screenshot, volume controls) and I want to make sure those stay one handed.
 - By combining ctl and tab on the same key I can't use that key combo.
 - It would be very nice to have an auto repeat of my thumb backspace, but I won't give up the number shortcut. Maybe a double/triple tap and hold could be auto repeat.
@@ -55,25 +53,37 @@ Edit the keymap files. Run `./flash.sh` and press the flash button on the keyboa
     - Maybe I can replace the left space with a Windows key. Though that means re-learning the symbol layer trigger. This could move to enter since it's already there but I don't use that key.
     - For Regolith I'm looking at the shortcuts and I think I might need a special layer to do all these. For instance, accessing the numbers or arrows while holding down super is going to be a pain. Though I could just remap the shortcuts too like using hjkl instead of arrow keys or yuiop (top row right hand) for the numbers.
         - https://github.com/regolith-linux/regolith-desktop/wiki/Getting-Started
+    - Another option is making the ` key a Windows modifier while held down. That's pretty easy to do while still getting to other key combos.
 - I haven't messed with layers that stay put at all. I've only used key that change while holding another.
     - Numpad
+    - Put layer switching keys on the shortcuts layer. Make a new layer that sits right above the main layer with the modifiers set and no dual purpose keys, except maybe hyperesc. But I should still have escape somewhere else so I don't run into the BIOS issue.
 - For gaming the "trigger space on keyup" is very annoying. All of the thumb keys will have problems because they either will trigger on keyup or there will be a delay for the held down function.
     - I should have a separate gaming layer that I can activate.
     - The only thing I should need the edit layer for in a game is the volume controls. Maybe I can move those to the shortcuts layer with the play/pause. (done)
 - Right now the enter hold key is the symbol layer. But I never use this.
 - The keys get messed up in one of my BIOS. I think the keyup is sent too fast for it to register when I use one of my dual-purpose keys (escape, enter, space) and the BIOS just thinks I'm holding it down. I have to do something like "tap enter, pause, hold enter" to get it to only register once.
+- Plus and minus are really hard to deal with when I need them both. When zooming in and out or increasing/decreasing a value. It would be much better to have them together.
+
+### Next revision
+- Layer right above base layer. Has set up for gaming and BIOS that doesn't have any double keys. Most of this layer will be a passthrough to the base  layer.
+- Make a gaming layer that is similar to above but has non special keys on the bottom buttons so that they can be reached with my pinky from my mouse. (Maybe don't do this since I'm using tenting currently.)
+- Layer switching on the shortcuts layer.
+- LED controls on the shortcuts layer.
+- Find a place to put Windows key. Possibly right space or `. If ` is not windows them make it a ctrl when held. Could also be enter hold.
+- Find a place that +/- can be next to each other and easily accessed with ctrl.
 
 
 ## Shortcuts to learn
 - ctrl-backspace deletes a word. I think Textblade makes use of this and other similar ones.
+    - This needs to be easier to hit though. 
+    - One option is making the ` key a ctrl modifier while held down. That's pretty easy to do while still getting to other key combos.
 
 ## Keycaps
 - Would really like homing keycaps for both home row and my thumbs. Possibly knurled keys or inverted angled caps for the thumb keys.
 
 ## Switches
-- Turns out I'm not a huge fan of these Gateron brown switches. They are alright I guess and I should get used to them more.
-- I think I would like box switches to get rid of some of the keycap wiggle.
-- I don't think I like the tactile bump. Maybe I would like linear switches or possibly torpe switches. The actuation force seems a little high for my tastes too, but then again I think I've caught myself resting my fingers and accidentally hitting certain keys. I think the bump makes it feel like the keys are dirty and that I need to clean out the resistance.
+- Turns out I'm not a huge fan of these Gateron brown switches. They are alright I guess and I should get used to them more. (Update: I am used to them now. Maybe I'd I might still different switches thought too.)
+- I don't think I like the tactile bump. Maybe I would like linear switches or possibly torpe switches. The actuation force seems a little high for my tastes too, but then again I think I've caught myself resting my fingers and accidentally hitting certain keys. I think the bump makes it feel like the keys are dirty and that I need to clean out the resistance. (Update: I'm used to this now and have started to like the bump.)
 
 ## Accessories
 - Tenting
@@ -119,6 +129,8 @@ Edit the keymap files. Run `./flash.sh` and press the flash button on the keyboa
     - It is now '-'
     - I use - quite a bit. I wonder if I could have it on my default layer somewhere. Maybe LALT or BKSP.
     - Will try backspace first and see how that goes. But LALT might be better as I don't already have muscle memory for that one.
+    - **A good percent of the time when I try to type - it comes out ' h'. Figure out why this is. Do I release the raise key too soon?**
+     - I saw something about changing the TAPPING_TERM for a single key. Maybe this could help?
 - **I rarely use the LALT key under my right thumb.** Also, this key doesn't have a second function. Maybe backspace or delete? Or another tab?
     - This is now delete on press and LALT on hold. I use LALT for alt-tab more often now.
 - Be able to hold delete or backspace.
