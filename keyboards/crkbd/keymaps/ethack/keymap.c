@@ -22,13 +22,15 @@ extern uint8_t is_master;
 // Layer names don't all need to be of the same length, obviously, and you can also skip them
 // entirely and just use numbers.
 #define _QWERTY 0
-#define _NUMPAD 1
-#define _EDIT 2
-#define _SYMBOL 3
-#define _SHORTCUT 4
+#define _GAME 1
+#define _NUMPAD 2
+#define _EDIT 3
+#define _SYMBOL 4
+#define _SHORTCUT 5
 
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
+  GAME,
   NUMPAD,
   EDIT,
   SYMBOL,
@@ -110,11 +112,12 @@ enum macro_keycodes {
 #define KC_GRV_CTL LCTL_T(KC_GRV)
 
 // Layer toggles
-#define QWER TG(_QWERTY)
-#define NUMP TG(_NUMPAD)
-#define EDIT TG(_EDIT)
-#define SYMB TG(SYMBOL)
-#define SHOR TG(_SHORTCUT)
+#define QWER TO(_QWERTY)
+#define GAME TO(_GAME)
+#define NUMP TO(_NUMPAD)
+#define EDTI TO(_EDIT) // purpose misspelling to avoid name conflict
+#define SYMB TO(_SYMBOL)
+#define SHOR TO(_SHORTCUT)
 
 // RGB
 #define R_MOD RGB_MOD
@@ -136,6 +139,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        LSPO,     Z,     X,     C,     V,     B,                      N,     M,  COMM,   DOT,  SLSH,  RSPC,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
                                TAB_CTL, SPC_E, BSPC_N,    ENT_W, SPC_S, DEL_ALT \
+                              //`--------------------'  `--------------------'
+  ),
+
+  [_GAME] = LAYOUT_kc( \
+  //,-----------------------------------------.                ,-----------------------------------------.
+        GRV, _____, _____, _____, _____, _____,                  _____, _____, _____, _____, _____, _____,\
+  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
+     HYPESC, _____, _____, _____, _____, _____,                  _____, _____, _____, _____, _____, _____,\
+  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
+       LSFT, _____, _____, _____, _____, _____,                  _____, _____, _____, _____, _____,  RSFT,\
+  //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
+                                    TAB,  SPC,   BSPC,      ENT,   SPC,   DEL \
                               //`--------------------'  `--------------------'
   ),
 
@@ -181,9 +196,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
   KC_HYPESC,  SHOT, R_M_P, R_HUD, R_HUI, R_M_G,                  DDENT, IDENT,  WKUP,  TERM, KC_PMNS, KC_VOLD,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       QWER,  NUMP,  EDIT,  SYMB,  SHOR,RGBRST,                  XXXXX,  WKLT,  WKDN,  WKRT, CMENT, KC_MUTE,\
+       QWER,  GAME,  NUMP,  EDTI,  SYMB,  SHOR,                  XXXXX,  WKLT,  WKDN,  WKRT, CMENT, KC_MUTE,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  XXXXX, XXXXX, XXXXX,    XXXXX, XXXXX, XXXXX \
+                                   QWER,  EDTI,  NUMP,     GAME,  SYMB, XXXXX \
                               //`--------------------'  `--------------------'
   )
 };

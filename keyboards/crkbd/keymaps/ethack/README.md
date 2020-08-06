@@ -2,6 +2,40 @@
 
 Edit the keymap files. Run `./flash.sh` and press the flash button on the keyboard twice when prompted.
 
+# Troubleshooting
+
+**Problem:**
+
+Attempt to flash is stuck on:
+```
+Detecting USB port, reset your controller now...............
+```
+
+**Solution:**
+
+Need to press the physical button (or bridge the pins) twice in order to flash.
+
+**Problem:**
+
+Attempt to flash is stuck on:
+```
+Waiting for /dev/ttyACM0 to become writable.
+```
+
+**Solution:**
+
+Uninstall Modem Manager which can interfere with the serial port.
+
+```
+Waiting for /dev/ttyACM0 to become writable.
+```
+
+References:
+- https://www.reddit.com/r/olkb/comments/bv22kj/unable_to_flash_pro_micro/epktbk7/
+- https://kaleidoscope.readthedocs.io/en/latest/setup_toolchain.html#Arduino-Linux
+
+
+
 # Reference
 - https://docs.qmk.fm/#/keycodes
     - https://docs.qmk.fm/#/feature_audio
